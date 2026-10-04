@@ -1,0 +1,32 @@
+<mvc:View
+  controllerName="codeup.supplier.portal.controller.Main"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:form="sap.ui.layout.form">
+  <Page title="Supplier Portal" class="sapUiResponsiveContentPadding">
+    <content>
+      <VBox width="100%" class="sapUiMediumMarginTop">
+        <MessageStrip text="Register or sign in to manage your supplier application." type="Information" showIcon="true" class="sapUiSmallMarginBottom" />
+        <IconTabBar id="authTabs" selectedKey="login" expandable="false">
+          <items>
+            <IconTabFilter key="login" text="Login" icon="sap-icon://log">
+              <VBox width="100%" class="sapUiSmallMarginTop">
+                <Input id="loginEmail" type="Email" placeholder="Email" value="{view>/authEmail}" />
+                <Input id="loginPassword" type="Password" placeholder="Password" value="{view>/authPassword}" class="sapUiSmallMarginTop" />
+                <Button text="Sign In" type="Emphasized" press=".onLogin" class="sapUiSmallMarginTop" />
+              </VBox>
+            </IconTabFilter>
+            <IconTabFilter key="register" text="Register" icon="sap-icon://add">
+              <VBox width="100%" class="sapUiSmallMarginTop">
+                <Input id="registerEmail" type="Email" placeholder="Email" value="{view>/authEmail}" />
+                <Input id="registerPassword" type="Password" placeholder="Password (8+ characters, upper/lowercase, number)" value="{view>/authPassword}" class="sapUiSmallMarginTop" />
+                <Input id="confirmPassword" type="Password" placeholder="Confirm password" value="{view>/confirmPassword}" class="sapUiSmallMarginTop" />
+                <Button text="Create Account" type="Emphasized" press=".onRegister" class="sapUiSmallMarginTop" />
+              </VBox>
+            </IconTabFilter>
+          </items>
+        </IconTabBar>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

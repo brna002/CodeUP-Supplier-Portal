@@ -1,0 +1,56 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "codeup.supplier.approvals",
+    "type": "application",
+    "title": "Supplier Approvals",
+    "description": "Supplier onboarding governance and review",
+    "dataSources": {
+      "supplierService": {
+        "uri": "/odata/v4/supplier/",
+        "type": "OData",
+        "settings": { "odataVersion": "4.0" }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": { "sap.m": {}, "sap.ui.core": {}, "sap.ui.layout": {} }
+    },
+    "models": {
+      "": {
+        "dataSource": "supplierService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        },
+        "type": "sap.ui.model.odata.v4.ODataModel"
+      }
+    },
+    "rootView": {
+      "viewName": "codeup.supplier.approvals.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "codeup.supplier.approvals.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [{ "pattern": "", "name": "Main", "target": "Main" }],
+      "targets": { "Main": { "viewName": "Main", "viewId": "Main" } }
+    }
+  }
+}

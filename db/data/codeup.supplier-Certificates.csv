@@ -1,0 +1,4 @@
+ID,supplier_ID,fileName,mimeType,fileSize,validUntil,aiAnalysis,isExpired
+72e6419b-2583-4d7a-9c04-51f36e8b2a10,1d5f8b39-2e74-46a1-9c03-8b6d4f2a7105,ISO_9001_Compliance_Certificate.pdf,application/pdf,2458000,2027-12-31,,false
+39a8c5e2-6f14-4b70-8d31-2c9e7a5f1046,2b7e91d5-3c64-4a10-a8f3-6d0c2e9b7541,ISO_9001_Compliance_Certificate.pdf,application/pdf,2458000,2026-08-30,,false
+e4b73d19-0a62-48f5-9c21-7d3e6a8b5014,4a9e2c71-5d08-43f6-9b12-7c0a6e3d8154,ISO_9001_Compliance_Certificate.pdf,application/pdf,2458000,2025-01-15,,true

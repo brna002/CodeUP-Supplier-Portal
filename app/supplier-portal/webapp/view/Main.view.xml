@@ -1,0 +1,50 @@
+<mvc:View
+  controllerName="codeup.supplier.portal.controller.Main"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:unified="sap.ui.unified">
+  <Page title="Supplier Application" showNavButton="true" navButtonPress=".onNavBack" class="sapUiResponsiveContentPadding">
+    <content>
+      <VBox>
+        <MessageStrip id="rejectionMessage" text="{view>/rejectionMessage}" type="Warning" showIcon="true" visible="{view>/isRejected}" class="sapUiSmallMarginBottom" />
+        <MessageStrip text="Complete your company profile and upload a current PDF certificate." type="Information" showIcon="true" class="sapUiSmallMarginBottom" />
+        <Panel headerText="Company Profile" expandable="false">
+          <content>
+            <VBox>
+              <Input id="companyName" placeholder="Company Name" value="{view>/supplier/companyName}" required="true" />
+              <Input id="taxNumber" placeholder="Tax Number" value="{view>/supplier/taxNumber}" required="true" class="sapUiSmallMarginTop" />
+              <Input id="contactPerson" placeholder="Contact Person" value="{view>/supplier/contactPerson}" class="sapUiSmallMarginTop" />
+              <Input id="taxOffice" placeholder="Tax Office" value="{view>/supplier/taxOffice}" class="sapUiSmallMarginTop" />
+              <Input id="email" type="Email" placeholder="Email" value="{view>/supplier/email}" required="true" class="sapUiSmallMarginTop" />
+              <Input id="address" placeholder="Address" value="{view>/supplier/address}" class="sapUiSmallMarginTop" />
+              <Input id="country" placeholder="Country" value="{view>/supplier/country}" class="sapUiSmallMarginTop" />
+              <Input id="city" placeholder="City" value="{view>/supplier/city}" class="sapUiSmallMarginTop" />
+              <Input id="phone" type="Tel" placeholder="Phone" value="{view>/supplier/phone}" class="sapUiSmallMarginTop" />
+              <Select id="category" selectedKey="{view>/supplier/category}" class="sapUiSmallMarginTop">
+                <items>
+                  <core:Item key="Services" text="Services" />
+                  <core:Item key="IT" text="IT" />
+                  <core:Item key="Logistics" text="Logistics" />
+                </items>
+              </Select>
+            </VBox>
+          </content>
+        </Panel>
+        <Panel headerText="PDF Certificate" class="sapUiSmallMarginTop">
+          <content>
+            <VBox>
+              <unified:FileUploader id="certificateUploader" name="certificate" fileType="pdf" mimeType="application/pdf" maximumFileSize="10" change=".onCertificateChange" uploadOnChange="false" />
+              <Text text="PDF only. Maximum file size: 10 MB." class="sapUiTinyMarginTop" />
+            </VBox>
+          </content>
+        </Panel>
+        <HBox justifyContent="End" class="sapUiSmallMarginTop">
+          <Button text="Track Status" press=".onShowStatus" class="sapUiSmallMarginEnd" />
+          <Button id="submitButton" text="Submit Application" type="Emphasized" press=".onSubmit" />
+          <Button id="resubmitButton" text="Resubmit" type="Emphasized" visible="{view>/isRejected}" press=".onSubmit" class="sapUiSmallMarginBegin" />
+        </HBox>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

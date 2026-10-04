@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplier Portal Launchpad</title>
+  <script
+    id="sap-ui-bootstrap"
+    src="https://ui5.sap.com/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-libs="sap.m"
+    data-sap-ui-compatVersion="edge"
+    data-sap-ui-async="true"
+    data-sap-ui-oninit="module:sap/ui/core/ComponentSupport">
+  </script>
+  <script>
+    sap.ui.getCore().attachInit(function () {
+      new sap.m.Shell({
+        app: new sap.m.App({
+          pages: [
+            new sap.m.Page({
+              title: "CodeUP Supplier Management Portal",
+              content: [
+                new sap.m.GenericTile({
+                  header: "Supplier Portal",
+                  subheader: "Onboarding & Self-Service",
+                  tileContent: [
+                    new sap.m.TileContent({
+                      content: new sap.m.NumericContent({ icon: "sap-icon://supplier", value: "New" })
+                    })
+                  ],
+                  press: function () {
+                    window.location.href = "./supplier-portal/webapp/index.html";
+                  }
+                }).addStyleClass("sapUiSmallMargin"),
+                new sap.m.GenericTile({
+                  header: "Supplier Approvals",
+                  subheader: "Governance, AI & Review",
+                  tileContent: [
+                    new sap.m.TileContent({
+                      content: new sap.m.NumericContent({ icon: "sap-icon://approvals", value: "Audit" })
+                    })
+                  ],
+                  press: function () {
+                    window.location.href = "./supplier-approvals/webapp/index.html";
+                  }
+                }).addStyleClass("sapUiSmallMargin")
+              ]
+            })
+          ]
+        })
+      }).placeAt("content");
+    });
+  </script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

@@ -1,0 +1,92 @@
+<mvc:View
+  controllerName="codeup.supplier.approvals.controller.Main"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Page title="Supplier Approvals" class="sapUiResponsiveContentPadding">
+    <content>
+      <VBox>
+        <Toolbar>
+          <Title text="Onboarding Applications" level="H2" />
+          <ToolbarSpacer />
+          <SegmentedButton id="statusFilter" selectedKey="All" selectionChange=".onFilterChange">
+            <items>
+              <SegmentedButtonItem key="All" text="All" />
+              <SegmentedButtonItem key="Submitted" text="Submitted" />
+              <SegmentedButtonItem key="Approved" text="Approved" />
+              <SegmentedButtonItem key="Rejected" text="Rejected" />
+            </items>
+          </SegmentedButton>
+          <Button icon="sap-icon://refresh" tooltip="Refresh" press=".onRefresh" />
+        </Toolbar>
+        <Table id="suppliersTable" mode="None" growing="true" growingScrollToLoad="true" items="{ path: '/Suppliers', parameters: { $orderby: 'createdAt desc' } }">
+          <columns>
+            <Column><Text text="Company" /></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Tax Number" /></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Contact" /></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Email" /></Column>
+            <Column><Text text="Status" /></Column>
+            <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Created" /></Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Active" press=".onItemPress">
+              <cells>
+                <Text text="{companyName}" />
+                <Text text="{taxNumber}" />
+                <Text text="{contactPerson}" />
+                <Text text="{email}" />
+                <ObjectStatus text="{status}" state="{ path: 'status', formatter: '.formatStatusState' }" />
+                <Text text="{createdAt}" />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+
+        <dependents>
+          <Dialog id="supplierDetailDialog" title="Supplier Review" contentWidth="48rem" contentHeight="auto" draggable="true" resizable="true" class="sapUiContentPadding">
+            <content>
+            <VBox>
+              <ObjectHeader title="{view>/selected/companyName}" intro="{view>/selected/category}">
+                <statuses><ObjectStatus text="{view>/selected/status}" state="{view>/selectedStatusState}" /></statuses>
+              </ObjectHeader>
+              <HBox wrap="Wrap" class="sapUiSmallMarginBottom">
+                <VBox class="sapUiSmallMarginEnd"><Label text="Tax number" /><Text text="{view>/selected/taxNumber}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Contact person" /><Text text="{view>/selected/contactPerson}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Tax office" /><Text text="{view>/selected/taxOffice}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Email" /><Text text="{view>/selected/email}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Phone" /><Text text="{view>/selected/phone}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Address" /><Text text="{view>/selected/address}, {view>/selected/city}, {view>/selected/country}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Category" /><Text text="{view>/selected/category}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Created at" /><Text text="{view>/selected/createdAt}" /></VBox>
+                <VBox class="sapUiSmallMarginEnd"><Label text="Rejection reason" /><Text text="{view>/selected/rejectReason}" wrapping="true" /></VBox>
+              </HBox>
+              <Panel headerText="Certificate" expandable="false">
+                <content>
+                  <VBox>
+                    <HBox wrap="Wrap" alignItems="Center">
+                      <VBox class="sapUiSmallMarginEnd"><Label text="File name" /><Text text="{view>/certificate/fileName}" /></VBox>
+                      <VBox class="sapUiSmallMarginEnd"><Label text="File size" /><Text text="{ path: 'view>/certificate/fileSize', formatter: '.formatFileSize' }" /></VBox>
+                    </HBox>
+                    <HBox alignItems="Center" wrap="Wrap">
+                      <Label text="Valid until:" class="sapUiTinyMarginEnd" />
+                      <Text text="{view>/certificate/validUntil}" class="sapUiSmallMarginEnd" />
+                      <ObjectStatus text="{= ${view>/certificate/ID} ? (${view>/certificate/isExpired} ? 'Expired' : 'Valid') : 'No certificate' }" state="{= ${view>/certificate/isExpired} ? 'Error' : 'Success' }" class="sapUiSmallMarginEnd" />
+                      <Button text="Analyze Certificate (AI)" icon="sap-icon://inspection" type="Emphasized" press=".onAnalyzeCertificate" enabled="{= !!${view>/certificate/ID} }" />
+                    </HBox>
+                    <Text text="{view>/certificate/aiAnalysis}" wrapping="true" class="sapUiSmallMarginTop" />
+                  </VBox>
+                </content>
+              </Panel>
+              <HBox justifyContent="End" class="sapUiSmallMarginTop">
+                <Button text="Reject" type="Reject" press=".onOpenReject" class="sapUiSmallMarginEnd" enabled="{= ${view>/selected/status} === 'Submitted' }" />
+                <Button text="Approve" type="Accept" press=".onApprove" enabled="{= ${view>/selected/status} === 'Submitted' }" />
+              </HBox>
+            </VBox>
+            </content>
+            <endButton><Button text="Close" press=".onCloseDetail" /></endButton>
+          </Dialog>
+        </dependents>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

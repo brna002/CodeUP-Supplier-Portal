@@ -1,0 +1,71 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "codeup.supplier.portal",
+    "type": "application",
+    "title": "Supplier Portal",
+    "description": "Supplier onboarding and application tracking",
+    "dataSources": {
+      "supplierService": {
+        "uri": "/odata/v4/supplier/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0",
+          "localUri": "localService/metadata.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": { "sap.m": {}, "sap.ui.core": {}, "sap.ui.unified": {} }
+    },
+    "models": {
+      "": {
+        "dataSource": "supplierService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        },
+        "type": "sap.ui.model.odata.v4.ODataModel"
+      },
+      "view": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": { "data": { "step": "login", "isRejected": false } }
+      }
+    },
+    "rootView": {
+      "viewName": "codeup.supplier.portal.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "codeup.supplier.portal.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        { "pattern": "", "name": "Login", "target": "Login" },
+        { "pattern": "application", "name": "ApplicationForm", "target": "ApplicationForm" },
+        { "pattern": "status", "name": "StatusTracker", "target": "StatusTracker" }
+      ],
+      "targets": {
+        "Login": { "viewName": "Login", "viewId": "Login", "viewLevel": 1 },
+        "ApplicationForm": { "viewName": "Main", "viewId": "Main", "viewLevel": 2 },
+        "StatusTracker": { "viewName": "StatusTracker", "viewId": "StatusTracker", "viewLevel": 3 }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+ID,companyName,taxNumber,contactPerson,taxOffice,email,address,country,city,phone,category,status,rejectReason,editableFields
+8f12a4c0-7d31-4e9b-8c22-1a5d93f0b641,Anadolu Teknoloji A.Ş.,1234567890,Elif Yılmaz,Kadıköy Vergi Dairesi,elif.yilmaz@anadoluteknoloji.com,Maslak Mah. Büyükdere Cad. No: 125,Turkey,Istanbul,+90 212 555 0184,IT,Submitted,,
+2b7e91d5-3c64-4a10-a8f3-6d0c2e9b7541,Mavi Rota Lojistik Ltd. Şti.,2345678901,Kerem Demir,Çankaya Vergi Dairesi,kerem.demir@mavirota.com,Mustafa Kemal Mah. 2120. Cad. No: 8,Turkey,Ankara,+90 312 555 0267,Logistics,Submitted,,
+6c3d0f82-9a15-47be-b264-5e8a1d7c9036,Ege Endüstriyel Hizmetler A.Ş.,3456789012,Zeynep Kaya,Konak Vergi Dairesi,zeynep.kaya@egeendustriyel.com,Alsancak Mah. Atatürk Cad. No: 74,Turkey,Izmir,+90 232 555 0342,Services,Approved,,
+4a9e2c71-5d08-43f6-9b12-7c0a6e3d8154,Pera Teknik Danışmanlık Ltd. Şti.,4567890123,Can Arslan,Beşiktaş Vergi Dairesi,can.arslan@perateknik.com,Levent Mah. Büyükdere Cad. No: 19,Turkey,Istanbul,+90 216 555 0418,Services,Rejected,Phone number and tax office invalid.,phone,taxOffice
+1d5f8b39-2e74-46a1-9c03-8b6d4f2a7105,Kuzey Bilişim Sistemleri A.Ş.,5678901234,Ayşe Çelik,Yenimahalle Vergi Dairesi,ayse.celik@kuzeybilisim.com,Ostim Mah. 100. Yıl Bulvarı No: 32,Turkey,Ankara,+90 312 555 0536,IT,Submitted,,

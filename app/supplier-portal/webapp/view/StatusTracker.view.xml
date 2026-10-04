@@ -1,0 +1,23 @@
+<mvc:View
+  controllerName="codeup.supplier.portal.controller.Main"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <Page title="Application Status" showNavButton="true" navButtonPress=".onNavBack" class="sapUiResponsiveContentPadding">
+    <content>
+      <VBox>
+        <ObjectStatus title="Current status" text="{view>/supplier/status}" state="{view>/statusState}" class="sapUiSmallMarginBottom" />
+        <HBox alignItems="Center" justifyContent="SpaceAround" class="sapUiMediumMarginBottom">
+          <VBox alignItems="Center"><core:Icon src="sap-icon://request" size="2rem" /><Text text="Submitted" /></VBox>
+          <core:Icon src="sap-icon://navigation-right-arrow" />
+          <VBox alignItems="Center"><core:Icon src="sap-icon://inspection" size="2rem" /><Text text="Review" /></VBox>
+          <core:Icon src="sap-icon://navigation-right-arrow" />
+          <VBox alignItems="Center"><core:Icon src="sap-icon://accept" size="2rem" /><Text text="Approved / Rejected" /></VBox>
+        </HBox>
+        <MessageStrip text="{view>/supplier/rejectReason}" type="Error" showIcon="true" visible="{view>/isRejected}" />
+        <Button text="Edit and Resubmit" type="Emphasized" visible="{view>/isRejected}" press=".onEditResubmission" class="sapUiSmallMarginTop" />
+        <Button text="Back to Application" press=".onEditResubmission" class="sapUiSmallMarginTop" />
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>
