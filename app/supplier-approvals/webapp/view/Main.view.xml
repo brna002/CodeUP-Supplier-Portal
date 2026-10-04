@@ -19,6 +19,40 @@
           </SegmentedButton>
           <Button icon="sap-icon://refresh" tooltip="Refresh" press=".onRefresh" />
         </Toolbar>
+        <Panel headerText="Application Metrics &amp; KPI Dashboard" expandable="true" expanded="true" class="sapUiSmallMarginBottom">
+          <content>
+            <HBox wrap="Wrap" justifyContent="SpaceAround" class="sapUiTinyMarginTopBottom">
+              <GenericTile header="Total Applications" subheader="All Submissions" frameType="OneByOne" press=".onFilterKPI" class="sapUiTinyMargin">
+                <tileContent>
+                  <TileContent>
+                    <NumericContent id="kpiTotal" value="5" icon="sap-icon://supplier" valueColor="Neutral" />
+                  </TileContent>
+                </tileContent>
+              </GenericTile>
+              <GenericTile header="Pending Review" subheader="Action Required" frameType="OneByOne" press=".onFilterKPI" class="sapUiTinyMargin">
+                <tileContent>
+                  <TileContent>
+                    <NumericContent id="kpiSubmitted" value="3" icon="sap-icon://pending" valueColor="Critical" />
+                  </TileContent>
+                </tileContent>
+              </GenericTile>
+              <GenericTile header="Approved" subheader="Active Suppliers" frameType="OneByOne" press=".onFilterKPI" class="sapUiTinyMargin">
+                <tileContent>
+                  <TileContent>
+                    <NumericContent id="kpiApproved" value="1" icon="sap-icon://accept" valueColor="Good" />
+                  </TileContent>
+                </tileContent>
+              </GenericTile>
+              <GenericTile header="Rejected" subheader="Needs Correction" frameType="OneByOne" press=".onFilterKPI" class="sapUiTinyMargin">
+                <tileContent>
+                  <TileContent>
+                    <NumericContent id="kpiRejected" value="1" icon="sap-icon://decline" valueColor="Error" />
+                  </TileContent>
+                </tileContent>
+              </GenericTile>
+            </HBox>
+          </content>
+        </Panel>
         <Table id="suppliersTable" mode="None" growing="true" growingScrollToLoad="true" items="{ path: '/Suppliers', parameters: { $orderby: 'createdAt desc' } }">
           <columns>
             <Column><Text text="Company" /></Column>

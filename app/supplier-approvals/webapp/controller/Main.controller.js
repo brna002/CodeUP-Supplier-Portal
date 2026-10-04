@@ -52,6 +52,26 @@ sap.ui.define([
       this.byId("suppliersTable").getBinding("items").filter(filters);
     },
 
+    onFilterKPI: function (event) {
+      const tileHeader = event.getSource().getHeader();
+      const table = this.byId("suppliersTable") || this.getView().findAggregatedObjects(true, function (control) {
+        return control.isA && control.isA("sap.m.Table");
+      })[0];
+      const binding = table && table.getBinding("items");
+      if (!binding) return;
+
+      const statusByHeader = {
+        "Pending Review": "Submitted",
+        "Approved": "Approved",
+        "Rejected": "Rejected"
+      };
+      const status = statusByHeader[tileHeader];
+      const filters = status
+        ? [new Filter("status", FilterOperator.EQ, status)]
+        : [];
+      binding.filter(filters);
+    },
+
     onRefresh: function () {
       const binding = this.byId("suppliersTable").getBinding("items");
       if (binding) binding.refresh();
