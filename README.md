@@ -1,4 +1,4 @@
-# 🏢 CodeUP - Enterprise Supplier Management & AI Governance Portal
+# 🏢 Enterprise Supplier Management & AI Governance Portal
 
 Bu proje, kurumsal şirketlerin tedarikçi kayıt, belge doğrulama ve onay süreçlerini dijitalleştirmek amacıyla **SAP Cloud Application Programming (CAP)** modeli, **SAP UI5 / Fiori** ve **SAP HANA Cloud** teknolojileri kullanılarak geliştirilmiş uçtan uca bir kurumsal çözümdür.
 
